@@ -1,0 +1,27 @@
+spring:
+  debug: true
+  sql:
+    init:
+      mode: always
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pruebas
+    username: pruebas
+    password: administracion
+    initialization-mode: always
+    data: classpath*:resources/data.sql
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        show_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    property-naming-strategy: SNAKE_CASE
+server:
+  port: 8100
+mapper:
+  instance:
+    - visa: com.fiserv.posnet.configuration.service.impl.CalculateRateTaxAmexVisa
+    - amex: com.fiserv.posnet.configuration.service.impl.CalculateRateTaxAmexImpl
+    - naranja: com.fiserv.posnet.configuration.service.impl.CalculateRateTaxNaranjaImpl
