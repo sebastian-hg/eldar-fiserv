@@ -10,7 +10,7 @@ INSERT INTO credit_card
 VALUES
 (1, 1, 'Sebastian Hernandez', '4540730045321266', '2032-12-12'),
 (2, 2, 'Pedro Fuentes', '5895620045321266', '2024-12-12'),
-(3, 3, 'Sebastian Hernandez', '376631730045321266', '2032-12-12');
+(3, 3, 'Sebastian Hernandez', '3766317300453212', '2032-12-12');
 
 
 

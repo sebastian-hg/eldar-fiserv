@@ -17,6 +17,7 @@ public class ValidateExpirationDateImpl implements ValidateExpirationDate {
     public Mono<Boolean> execute(String expirationDate) {
 
         return Mono.just(expirationDate)
+                .doOnNext(a -> log.info("request is received: {}", expirationDate))
                 .map(date -> {
                     return LocalDate.parse("01/" + date, formatter);
                 })

@@ -22,6 +22,7 @@ public class GetInformationCreditCardImpl implements GetInformationCreditCard {
     @Override
     public Mono<GetCreditCardResponse> execute(String creditCardNumber) {
         return Mono.just(creditCardNumber)
+                .doOnNext(cc -> log.info("request is received: {}", creditCardNumber))
                 .map(repository::findByCardNumber)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
@@ -36,6 +37,8 @@ public class GetInformationCreditCardImpl implements GetInformationCreditCard {
                             .brandResponse(companyBrand)
                             .build();
                 })
-                .switchIfEmpty(Mono.error(CreditCardNotExistException::new));
+                .switchIfEmpty(Mono.error(CreditCardNotExistException::new))
+                .doOnError(error -> log.error("error in GetInformationCreditCardImpl: ",error));
+
     }
 }

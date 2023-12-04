@@ -2,6 +2,8 @@ package com.fiserv.posnet.services;
 
 import com.fiserv.posnet.model.dao.CreditCard;
 import com.fiserv.posnet.model.dao.CreditCardBrand;
+import com.fiserv.posnet.model.dto.response.GetBrandResponse;
+import com.fiserv.posnet.model.dto.response.GetCreditCardResponse;
 import com.fiserv.posnet.repository.CreditCardRepository;
 import com.fiserv.posnet.service.impl.GetInformationCreditCardImpl;
 import org.junit.jupiter.api.Test;
@@ -30,8 +32,9 @@ public class GetInformationCreditCardImplTest {
     private GetInformationCreditCardImpl service;
 
     private String creditCardRequest;
-    private CreditCard creditCartExpected;
-    private Mono<CreditCard> creditCardResponse;
+    private GetCreditCardResponse creditCartExpected;
+    private Mono<GetCreditCardResponse> creditCardResponse;
+    private GetBrandResponse getBrandResponse;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @Test
@@ -64,18 +67,17 @@ public class GetInformationCreditCardImplTest {
     }
 
     private void givenResponse() {
-        var brand = CreditCardBrand.builder()
-                .id(1L)
+        getBrandResponse = GetBrandResponse.builder()
                 .name("Visa")
                 .build();
 
-        creditCartExpected = CreditCard.builder()
-                .id(1L)
+        creditCartExpected = GetCreditCardResponse.builder()
                 .cardNumber("1212121212121212")
-                .dateExpiration(LocalDate.parse("01/11/2032",formatter))
-                .creditCardBrand(brand)
                 .cardHolder("Sebastian Hernandez")
+                .brandResponse(getBrandResponse)
+                .dateExpiration("1/2032")
                 .build();
+
     }
 
     private void whenExecute() {

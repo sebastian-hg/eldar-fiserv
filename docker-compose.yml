@@ -1,0 +1,33 @@
+version: "3"
+services:
+  java_app:
+    container_name: java_app
+    image: fiserv-app:1.0.0
+    build: .
+    ports:
+      - "8100:8100"
+    environment:
+      SPRING_DATASOURSE_URL: "jdbc:postgresql://postgresdb:5432/pruebas"
+      SPRING_DATASOURCE_USERNAME: "pruebas"
+      SPRING_DATASOURCE_PASSWORD: "administracion"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "create-drop"
+    depends_on:
+      - postgresdb
+    networks:
+      - my-net
+  postgresdb:
+    container_name: postgresdb
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "pruebas"
+      POSTGRES_PASSWORD: "administracion"
+      POSTGRES_DB: "pruebas"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
+    networks:
+      - my-net
+networks:
+  my-net:
+
+

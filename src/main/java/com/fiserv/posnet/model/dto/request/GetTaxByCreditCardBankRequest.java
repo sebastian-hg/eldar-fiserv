@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class GetTaxByCreditCardBankRequest {
     private String creditCardBrand;
+    private Double amountTransaction;
     private LocalDate calculateDate;
 
 }
