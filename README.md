@@ -6,7 +6,7 @@ proyecto realizado y pensado validar datos sobre tarjetas de credito,
 en Fiserv, logrando validar por fecha de vencimientos, montos de transacciones, obtener datos generales.
 ### Tecnologias utilizadas:
 * Spring Boot
-* Postgresql
+* h2
 * Maven
 * JDK 17
 
@@ -19,17 +19,9 @@ en Fiserv, logrando validar por fecha de vencimientos, montos de transacciones, 
 ./mvnw test
 
 ### Ambiente local
-dentro de la raiz del proyecto se encuentra el dockerFile de la app para generar la imagen y el docker-compose 
-para levantar el servicio de manera local, de manera tal que al ingresar a la app por consola debera ejecutar los
-siguiente comandos:
+ejectar el siguien comando para levantar por consola
 
-docker_compose build java_app -> este creara la imagen de la app localmente
-
-docker-compose up -> levanta los servicios, gerando el container localmente
-
-IMPORTANTE: en caso de tener un servicio o servidor localmente de postgres puede causar error al momento de levantar
-el contenedor, por favor para el servicio con el comando :
-sudo systemctl stop  postgresql
+./mvnw spring-boot:run
 
 El servidor levantará en el puerto 8100.
 
